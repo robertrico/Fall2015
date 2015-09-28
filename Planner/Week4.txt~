@@ -81,4 +81,4 @@ PHYS:
 	-> //"HW3"
 PHYS:
 	-> //"Finish Lab"
-	-> //"Read Next Lab"
+	-> "Read Next Lab"
