@@ -1,0 +1,78 @@
+0 
+19
+
+-Mamsrun=
+-Masflags=
+-Mcc=gcc
+-Mcfl= -pipe -fPIC -O -I/titan/software/synopsys14/vcs/include
+-Mcplusplus=g++
+-Mcrt0=
+-Mcrtn=
+-Mcsrc=
+-Mldflags=-m32
+-Mobjects= /titan/software/synopsys14/vcs/linux/lib/libvirsim.so /titan/software/synopsys14/vcs/linux/lib/librterrorinf.so /titan/software/synopsys14/vcs/linux/lib/libsnpsmalloc.so
+-Mout=simv
+-Msaverestoreobj=/titan/software/synopsys14/vcs/linux/lib/vcs_save_restore_new.o
+-Msyslibs=/titan/software/synopsys14/vcs/linux/lib/ctype-stubs_32.a -ldl
+-Mvcsaceobjs=
+-gen_obj
+-picarchive
+/titan/software/synopsys14/vcs/linux/bin/vcs1
+test.v
+46
+sysc_uni_pwd=/gaia/class/student/ricor/137
+X_COLORMAP_DEFAULT=0
+X_COLORMAP_BASE=128
+XDBGJTAGWAITTIME=20
+WWW_HOME=http://www.csus.edu
+VMR_MODE_FLAG=32
+VIRSIMHOME=/titan/software/synopsys09/vcs/gui/virsim
+VCS_MX_HOME_INTERNAL=1
+VCS_HOME=/titan/software/synopsys14/vcs
+VCS_DEPTH=0
+VCS_ARG_ADDED_FOR_TMP=1
+VCS_ARCH_OVERRIDE=linux
+VCS_ARCH=linux
+VCS_AMD_PURE32=1
+UNAME=/bin/uname
+TOOL_HOME=/titan/software/synopsys14/vcs/linux
+SYNOPSYS_SYN=/titan/software/synopsys14/syn/linux/syn
+SYNOPSYS_SIM=/titan/software/synopsys14/vcs
+SYNOPSYS=/titan/software/synopsys14/syn/linux
+STATES_LICENSE_PATH=/usr/pkg/states/bin
+SSH_TTY=/dev/pts/14
+SSH_CONNECTION=10.117.89.224 41781 130.86.67.249 22
+SSH_CLIENT=10.117.89.224 41781 22
+SSH_ASKPASS=/usr/libexec/openssh/gnome-ssh-askpass
+SNPSLMD_LICENSE_FILE=7241@titan.ecs.csus.edu:/titan/software/synopsys14/vcs/flexlm//license.dat
+SCRNAME=vcs
+SCRIPT_NAME=vcs
+QTLIB=/usr/lib/qt-3.3/lib
+QTINC=/usr/lib/qt-3.3/include
+QTDIR=/usr/lib/qt-3.3
+P3_ENABLE_NFS_DB_ACCESS=yes
+OVA_UUM=0
+OPENWINHOME=/usr/openwin
+MSC_LICENSE_FILE=5281@voyager.ecs.csus.edu
+MAGIC_COLOR=16bit
+LINK_TIMEOUT=3
+LESSOPEN=||/usr/bin/lesspipe.sh %s
+LC_ALL=C
+LAI_LIB=/usr/pkg/smartmodel
+JAVA_HOME=/usr/pkg/java
+HISTCONTROL=ignoredups
+HELPPATH=/usr/openwin/lib/help
+G_BROKEN_FILENAMES=1
+GUIDEHOME=/usr/openwin/lib/guide
+CVS_RSH=ssh
+CDS_LIC_FILE=51700@flex2.ecs.csus.edu
+0
+2
+1444235322 f_sop.v
+1444235515 test.v
+4
+0 
+1400212016 /titan/software/synopsys14/vcs/linux/lib/libvirsim.so
+1400211768 /titan/software/synopsys14/vcs/linux/lib/librterrorinf.so
+1400211645 /titan/software/synopsys14/vcs/linux/lib/libsnpsmalloc.so
+1444235529 simv.daidir
