@@ -1,0 +1,6 @@
+#lang racket
+
+(define (extract str)
+	(substring str 4 8))
+
+(extract "Hello WORLD I AM HERE")
