@@ -21,14 +21,12 @@
 
 (define (last L)
 	(if (null? (cdr L)) (car L)
-						(last cdr(L))))
-
+						(last (cdr L))))
 (last `(1 2 3 4))
 
 (define (isMemberOf x L)
 	(if (null? L) #f 
-					(if ((= x car(L))) #t 
-										(isMemberOf(x cdr(L))))))
-
-;(isMemberOf 3 `(4 5 8 6 3))
+					(if (equal? x (car L)) #t 
+										(isMemberOf x (cdr L)))))
+(isMemberOf 3 `(4 5 8 6 3))
 
