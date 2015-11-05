@@ -20,6 +20,7 @@
 (buildLR -346 2)
 (buildLR 8 6)
 (buildLR -2 -9)
+
 ;Prove Type Integer
 (if (= 9999 (+ 8888 (buildLR 11898989 646464646411))) (display "Data Type is integer")
 	(display ("Data Type is not integer")))
@@ -38,38 +39,80 @@
 
 ;---C---------------------------------------------------------------------------
 
-;	"unwind" - takes a list and returns the unwinded version of
-;	the list.  "Unwinding" a list means extracting the two centermost
-;	elements and putting them at the front of the list, then repeating
-;	the process until the entire list is "unwound".  For example,
-;	(unwind '(7 8 2 9 5 6)) should return the list (2 9 8 5 7 6).
-;	If the list has an odd number of elements, the centermost value
-;	should be extracted first, then the algorithm proceeds normally.
-;	For example, (unwind '(7 8 2 3 9 5 6)) would return (3 2 9 8 5 7 6).
+(define (isEven x)
+	(equal? 0 (modulo x 2))) 
 
+(define (isOdd x)
+	(not (isEven x)))
 
 (define (listLen L)
-	(if (null? L) 0 (+ 1 (listLen (cdr L)))))
+	(if (null? L) 0 
+		(+ 1 (listLen (cdr L)))))
 
-(define (extractEMid L l)
-	(if (= (listLen L) (+ (/ l 2) 1)) (cons (car L) (cons (car (cdr L)) '())) 
-			(extractEMid (cdr L) l)))
+(define (getMidIndex L)
+	(if (isEven (listLen L)) (list-ref L (- (quotient (listLen L) 2) 1)) 
+		(list-ref L (quotient (listLen L) 2))))
 
-(define (extractOMid L l)
-	(if (= (listLen L) (+ (/ (- l 1) 2) 1)) (car L) 
-			(extractOMid (cdr L) l)))
+(define (unwind L)
+ (if (null? L) '()
+    (cons (getMidIndex L) (unwind (remove (getMidIndex L) L))))) 
 
-(listLen `(1 2 3 4 5))
-(listLen `(1 2 3 4 5 12 12 12 13))
-(listLen `())
-(listLen `(5))
+(unwind '(7 8 2 9 5 6)) ;should return (2 9 8 5 7 6)
+(unwind '(7 8 2 3 9 5 6)) ;should return (3 2 9 8 5 7 6)
+(unwind '(1 2 3 4 5)) ;should return (3 2 4 1 5)
+(unwind '(1 2 3 4 5 6)) ;should return (3 4 2 5 1 6)
 
-(extractEMid '(1 2 3 4) (listLen '(1 2 3 4)))
-(extractEMid '(1 2 3 4 5 7 8) (listLen '(1 2 3 4 5 6 7 8)))
-(extractEMid '(1 2 3 4 5 7 8 9 10) (listLen '(1 2 3 4 5 6 7 8 9 10)))
+;---D---------------------------------------------------------------------  
 
-(extractOMid '(1 2 3 4 5) (listLen '(1 2 3 4 5)))
-(extractOMid '(1 2 3 4 5 7 8 9 10 11) (listLen '(1 2 3 4 5 6 7 8 9 10 11)))
+(define (isNeg x)
+	(> 0 x)) 
+
+(define (truthList f L)
+	(if (null? L) '()
+		(cons (f (car L)) (truthList f (cdr L)))))
+
+(define (score L)
+	(if (null? L) 0
+		(if (car L) (+ 1 (score (cdr L)))
+			(score (cdr L)))))
+
+(define (functionWinner f g L)
+	(if (= (score (truthList f L)) (score (truthList g L))) 0
+		(if (> (score (truthList f L)) (score (truthList g L))) 1
+		2)))
+
+(functionWinner isNeg isEven '(7 -3 2 1 -5))
+(functionWinner isNeg isEven '(7 3 2 1 -5))
+(functionWinner isNeg isEven '(7 4 -3 2 1 -5))
+(functionWinner isNeg isEven '(7 4 6 2 1 -5))
 
 
+;------E-----------------------------------------------------
+(define (getNestedCount L)
+	(if (null? L) 0
+		(if (list? (car L)) (+ (getNestedCount (cdr L)) (getNestedCount (car L)))
+			(+ 1 (getNestedCount (cdr L))))))
+
+(display "No nest = 5 ? ")
+(getNestedCount '(1 2 3 4 5))
+(display "1 nest = 7 ? ")
+(getNestedCount '((2 2) 1 2 3 4 5))
+(display "3 nest = 14 ? ")
+(getNestedCount '(1 2 3 4 5 (2 (1 2 (1 2 3) 3 4) 2)))
+(display "3 nest = 6 ? ")
+(getNestedCount '(2 3 (4 (7 6) 5)))
+
+;----F--------------------------------------------------  
+(define (makeCutter x)
+	(define (preCut L x)
+		(if (= 0 x) '()
+			(cons (car L) (preCut (cdr L) (- x 1)))))
+	(lambda (L)
+		(preCut L x)))
+
+(define testCut3 (makeCutter 3))
+(testCut3 '(1 2 3 4 5 6 7))
+
+(define testCut8 (makeCutter 8))
+(testCut8 '(1 2 3 4 5 6 7 9 8 10 12))
 
