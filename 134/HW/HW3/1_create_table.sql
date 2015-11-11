@@ -26,7 +26,7 @@ CREATE TABLE Drug(
 	trade_name VARCHAR(32) NOT NULL,
 	formula VARCHAR(9) NOT NULL,
 	PRIMARY KEY (pname,trade_name),
-	UNIQUE (pname),
+	UNIQUE (trade_name),
 	FOREIGN KEY (pname) REFERENCES Ph_company(pname)
 );
 
