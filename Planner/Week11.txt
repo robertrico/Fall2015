@@ -37,14 +37,11 @@ PHYS:
 		- "Build Scheme Functions"
 		- "Watch/Research DFA to NFA"
  137:
-	-> "HW 7"
-	-> "Project 2"
-	-> "Read Chapter 6
-	-> "Read Chapter 2"
-		- Create Study Notes
+	-> //"HW 7"
+	-> //"Project 2"
+	-> //"Read Chapter 6
 PHYS:
-	-> "Review do 2 problems"
-	-> "HW 32"
+	-> //"HW 32"
 ################################################################################
 ### Thursday 12 ################################################################
 ################################################################################
