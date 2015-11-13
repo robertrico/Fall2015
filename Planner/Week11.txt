@@ -49,9 +49,10 @@ PHYS:
  134:
 	-> ""
  135:
-	-> QUIZ
+	-> //QUIZ
  137:
 	-> "Read Chapter 6"
+	-> "Study Chapter 2"
 	-> "Reach Chapter 5"
 	-> "HW 7"
 	-> "Project 2"
