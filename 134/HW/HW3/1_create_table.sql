@@ -44,6 +44,7 @@ CREATE TABLE Pharmacy(
 	name VARCHAR(32) NOT NULL,
 	address VARCHAR(32) NULL,
 	phone VARCHAR(10) NULL,
+	PRIMARY KEY (name),
 	UNIQUE (name)
 );
 

@@ -6,8 +6,9 @@
  135:
 	-> ""
  137:
+	-> "Study Chapter 2"
+	-> "Study Chapter 5"
 	-> "Read Chapter 6"
-	-> "Read Chapter 5"
 	-> "Read Chapter 4"
 	-> "HW 7"
 	-> "Project 2"
