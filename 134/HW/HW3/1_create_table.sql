@@ -52,7 +52,7 @@ CREATE TABLE Sell (
 	pharmacy_name VARCHAR(32) NOT NULL,
 	pname VARCHAR(32) NOT NULL,
 	trade_name VARCHAR(32) NOT NULL,
-	price VARCHAR(16) NOT NULL,
+	price Decimal(10,2) NOT NULL,
 	FOREIGN KEY (pname, trade_name) REFERENCES Drug(pname, trade_name) ,
 	FOREIGN KEY (pharmacy_name) REFERENCES Pharmacy(name) 
 );

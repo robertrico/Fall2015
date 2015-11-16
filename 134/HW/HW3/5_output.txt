@@ -1,0 +1,97 @@
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 134
+Server version: 5.5.46-0ubuntu0.14.04.2 (Ubuntu)
+
+Copyright (c) 2000, 2015, Oracle and/or its affiliates. All rights reserved.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+Database changed
+
+/* Query 1*/
+/* Retrieve the drugs' Information*/
+mysql> SELECT trade_name,formula FROM Drug,Ph_company WHERE Drug.pname = Ph_company.pname AND Ph_company.pname="Pfizer";
++------------+-----------+
+| trade_name | formula   |
++------------+-----------+
+| Oxycontin  | C18H21NO4 |
+| PooStopper | FIBER10   |
++------------+-----------+
+2 rows in set (0.00 sec)
+
+/* Query 2*/
+/* List Drug Information */
+mysql> SELECT DISTINCT Drug.pname,Drug.trade_name,Drug.formula FROM Drug,Prescription,Consist_of WHERE Consist_of.dssn = Prescription.dssn AND Drug.trade_name = Consist_of.trade _name;
++-------------+--------------+-----------+
+| pname       | trade_name   | formula   |
++-------------+--------------+-----------+
+| Pfizer      | Oxycontin    | C18H21NO4 |
+| USA Drug Co | Marijuana    | THC       |
+| USA Drug Co | Oxysnifftium | SNIFFHAIR |
+| Drugs R Us  | Tylenol      | Magic     |
+| Drugs R Us  | Notadrugium  | C2H23N12  |
++-------------+--------------+-----------+
+5 rows in set (0.00 sec)
+
+/* Query 3*/
+/* Obtain all the prescription drugs give by Elle Elmasri */
+mysql> SELECT Drug.trade_name,Drug.pname,Prescription.pdate FROM Drug,Prescription,Doctor,Consist_of WHERE Doctor.dname = "Elle Elmasri" AND Drug.trade_name = Consist_of.trade_n ame AND Consist_of.pre_no = Prescription.pre_no AND Prescription.dssn = Doctor.dssn;
++--------------+-------------+------------+
+| trade_name   | pname       | pdate      |
++--------------+-------------+------------+
+| Marijuana    | USA Drug Co | 2015-11-08 |
+| Oxycontin    | Pfizer      | 2015-10-05 |
+| Oxysnifftium | USA Drug Co | 2015-11-05 |
++--------------+-------------+------------+
+3 rows in set (0.00 sec)
+
+/* Query 4*/
+/* Retrieve all the drugs */
+mysql> SELECT DISTINCT Drug.trade_name,Drug.formula FROM Drug,Sell,Pharmacy WHERE Drug.trade_name = Sell.trade_name AND Pharmacy.name = "CVS" AND Sell.pharmacy_name = Pharmacy.n ame;
++------------+-----------+
+| trade_name | formula   |
++------------+-----------+
+| Oxycontin  | C18H21NO4 |
+| Marijuana  | THC       |
+| Tylenol    | Magic     |
++------------+-----------+
+3 rows in set (0.00 sec)
+
+/* Query 5*/
+/* Retrive number of drugs made by "Pfizer" */
+mysql> SELECT count(*) AS "Drug Count" FROM Drug,Ph_company WHERE Drug.pname = Ph_company.pname AND Ph_company.pname = "Pfizer";
++------------+
+| Drug Count |
++------------+
+|          2 |
++------------+
+1 row in set (0.00 sec)
+
+/* Query 6*/
+/* Obtain Information of pharmacy that sells Tylenol with lowest price */
+mysql> SELECT Pharmacy.name,Pharmacy.address FROM Pharmacy,Sell WHERE Pharmacy.name = Sell.pharmacy_name AND Sell.trade_name = "Tylenol" AND Sell.price = (SELECT MIN(price) FROM  Sell WHERE trade_name = "Tylenol");
++-------------+----------------+
+| name        | address        |
++-------------+----------------+
+| Joe's Drugs | 789 Side Alley |
++-------------+----------------+
+1 row in set (0.00 sec)
+
+/* Query 7*/
+/* Retrieve the pharmacies that sell more than 2 types of drugs. */
+mysql> SELECT DISTINCT Pharmacy.name FROM Pharmacy,Sell WHERE Pharmacy.name = Sell.pharmacy_name AND (SELECT count(*) FROM Sell WHERE Pharmacy.name = Sell.pharmacy_name) > 2;
++-----------+
+| name      |
++-----------+
+| CVS       |
+| Walgreens |
+| Walmart   |
++-----------+
+3 rows in set (0.00 sec)
+
+mysql> quit
+Bye

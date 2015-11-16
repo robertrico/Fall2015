@@ -9,4 +9,6 @@ SELECT DISTINCT Drug.trade_name,Drug.formula FROM Drug,Sell,Pharmacy WHERE Drug.
 /*5*/
 SELECT count(*) AS "Drug Count" FROM Drug,Ph_company WHERE Drug.pname = Ph_company.pname AND Ph_company.pname = "Pfizer";
 /*6*/
+SELECT Pharmacy.name,Pharmacy.address FROM Pharmacy,Sell WHERE Pharmacy.name = Sell.pharmacy_name AND Sell.trade_name = "Tylenol" AND Sell.price = (SELECT MIN(price) FROM Sell WHERE trade_name = "Tylenol");
 /*7*/
+SELECT DISTINCT Pharmacy.name FROM Pharmacy,Sell WHERE Pharmacy.name = Sell.pharmacy_name AND (SELECT count(*) FROM Sell WHERE Pharmacy.name = Sell.pharmacy_name) > 2;
