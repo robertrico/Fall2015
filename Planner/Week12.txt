@@ -20,25 +20,30 @@ PHYS:
  135:
 	-> ""
  137:
-	-> "Read Chapter 6"
-	-> "Read Chapter 5"
-	-> "Read Chapter 4"
 	-> "HW 7"
+	-> "Read Chapter 6"
+	-> "Read Chapter 4"
+	-> "Study Chapter 2"
+	-> "Study Chapter 5"
 	-> "Project 2"
 PHYS:
-	-> "HW 32" DUE
+	-> //"HW 32" DUE
+	-> "Review Problem(s)"
 ################################################################################
 ### Wednesday 18 ###############################################################
 ################################################################################
  134:
+	-> "Check and turn in HW"
 	-> "HW 3" DUE AT 3PM
  135:
 	-> ""
  137:
 	-> "Read Chapter 4"
-	-> "Read Chapter 5"
-	-> "HW 7" DUE
+	-> "Read Chapter 7"
+	-> "HW 7 & Print" DUE
 	-> "Project 2"
+	-> "Study Chapter 2"
+	-> "Study Chapter 5"
 PHYS:
 	-> "HW"
 ################################################################################
