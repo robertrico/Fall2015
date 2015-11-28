@@ -76,9 +76,8 @@ PHYS:
  135:
 	-> ""
  137:
-	-> "Project 3"
-	-> "Study HW"
+	-> //"Project 3"
 PHYS:
 	-> //"HW 33"
-	-> "Ch 32 Review Problem(s)"
+	-> //"Ch 32 Review Problem(s)"
 	-> "Work on Lab"
