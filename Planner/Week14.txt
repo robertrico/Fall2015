@@ -6,13 +6,11 @@
  135:
 	-> ""
  137:
-	-> "HW 8" DUE
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
+	-> //"HW 8" DUE
+	-> "Study HW"
 	-> "Project 3"
-	-> "Read Chapter 8"
 PHYS:
-	-> ""
+	-> "STUDY"
 ################################################################################
 ### Tuesday 1 ##################################################################
 ################################################################################
@@ -22,16 +20,10 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Project 3"
-	-> "Read Chapter 8"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
+	-> "Study HW"
 PHYS:
 	-> ""
+	-> "STUDY"
 ################################################################################
 ### Wednesday 2 ################################################################
 ################################################################################
@@ -41,16 +33,10 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Read Chapter 9"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
-	-> "Study Chapter 8"
+	-> "Study HW"
 PHYS:
 	-> ""
+	-> "STUDY"
 ################################################################################
 ### Thursday 3 #################################################################
 ################################################################################
@@ -60,14 +46,7 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Read Chapter 9"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
-	-> "Study Chapter 8"
+	-> "Study HW"
 PHYS:
 	-> ""
 ################################################################################
@@ -79,14 +58,7 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Read Chapter 9"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
-	-> "Study Chapter 8"
+	-> "Study HW"
 PHYS:
 	-> ""
 ################################################################################
@@ -98,14 +70,7 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Read Chapter 9"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
-	-> "Study Chapter 8"
+	-> "Study HW"
 PHYS:
 	-> ""
 ################################################################################
@@ -117,13 +82,6 @@ PHYS:
 	-> ""
  137:
 	-> "Project 3"
-	-> "Read Chapter 9"
-	-> "Study Chapter 2"
-	-> "Study Chapter 3"
-	-> "Study Chapter 4"
-	-> "Study Chapter 5"
-	-> "Study Chapter 6"
-	-> "Study Chapter 7"
-	-> "Study Chapter 8"
+	-> "Study HW"
 PHYS:
 	-> ""
