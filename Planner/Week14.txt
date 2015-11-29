@@ -66,11 +66,10 @@ PHYS:
  134:
 	-> ""
  135:
-	-> "Assignment 3"
+	-> //"Assignment 3"
  137:
 	-> //"Project 3"
-	-> "HW 9"
-	-> "Project 3 Again"
+	-> //"Project 3 Again"
 PHYS:
 	-> ""
 ################################################################################
@@ -79,10 +78,8 @@ PHYS:
  134:
 	-> ""
  135:
-	-> "Assignment 3"
- 137:
-	-> "Project 3"
-	-> "Study HW"
-	-> "HW 9"
-PHYS:
 	-> ""
+ 137:
+	-> //"Project 3"
+PHYS:
+	-> //"Lab"
