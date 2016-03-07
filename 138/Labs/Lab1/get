@@ -1,0 +1,8 @@
+No.     Time           Source                Destination           Protocol Length Info
+   1419 17.847950      10.117.178.9          128.119.245.12        HTTP     480    GET /wireshark-labs/INTRO-wireshark-file1.html HTTP/1.1 
+
+Frame 1419: 480 bytes on wire (3840 bits), 480 bytes captured (3840 bits) on interface 0
+Ethernet II, Src: HonHaiPr_4e:3b:77 (48:e2:44:4e:3b:77), Dst: Alcatel-_c1:75:69 (e8:e7:32:c1:75:69)
+Internet Protocol Version 4, Src: 10.117.178.9, Dst: 128.119.245.12
+Transmission Control Protocol, Src Port: 17195 (17195), Dst Port: 80 (80), Seq: 1, Ack: 1, Len: 426
+Hypertext Transfer Protocol
