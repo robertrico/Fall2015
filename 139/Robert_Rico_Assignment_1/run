@@ -1,0 +1,3 @@
+#!/bin/bash
+
+bin/producer $1 $2 $3

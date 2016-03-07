@@ -1,0 +1,45 @@
+Robert Rico
+CSC 139 Mon,Wed,Fri 2:00-2:50
+Spring 2016 
+Ghassan Shobaki
+
+#### Description #########
+This project implements the use of a bounded buffer between two processes, a producer, and a consumer process.Using shared memory the producer 
+process creates a shared memory object, using the libshm library which was created by code provided.
+It then inserts a random integer into the buffer at the in index.
+The consumer then consumes the integer at the out index. The out index is incremented if the buffer is not empty, while the in index incremented if the
+buffer is not full.
+
+#### Compliation #########
+To Compile simply use the make file, it will compile the libary as well as the code
+
+#### Execution #########
+To run execute producer with arguments from bin, or use the provided executable script file called run
+
+
+#### Project Directories tree #########
+
+Lab1
+├── bin
+│   └── #Executables are compiled into here
+├── build
+│   └── #Compiled Objects are placed here
+├── include
+│   ├── consumer.h #The consumer header files contains the includes for the consumer.c
+│   └── producer.h #The consumer header files contains the includes for the produce.c and prototypes
+├── lib
+│   ├── build
+│   │   └── #The shared memory library object
+│   ├── include 
+│   │   └── libshm.h #The header file for includes and prototypes for the library.
+│   ├── libshm.a #The compiled library file to use in the project
+│   ├── makefile #the makefile for the library
+│   └── src
+│       └── libshm.c #The source code for libshm library
+├── makefile #makefile for the project
+├── README #The README
+└── src
+    ├── consumer.c #The Consumer source code
+    └── producer.c #The Producer source code
+
+8 directories, 11 files

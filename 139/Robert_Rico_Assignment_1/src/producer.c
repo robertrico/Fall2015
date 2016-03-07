@@ -1,3 +1,4 @@
+/* Robert Rico */
 #include "producer.h"
 
 int main(int argc, char* argv[])
@@ -48,12 +49,8 @@ int main(int argc, char* argv[])
 
 void Producer(int bufSize, int itemCnt, int randSeed)
 {
-    int in = 0;
-    int out = 0;
-        
     srand(randSeed);
 
-	WriteAtBufIndex(5,101);
     // Write code here to produce itemCnt integer values in the range [0-100]
     // Use the functions provided below to get/set the values of shared variables "in" and "out"
     // Use the provided function WriteAtBufIndex() to write into the bounded buffer 	
@@ -63,6 +60,16 @@ void Producer(int bufSize, int itemCnt, int randSeed)
 	// printf("Producing Item %d with value %d at Index %d\n", i, val, in);
 	// where i is the item number, val is the item value, in is its index in the bounded buffer
     
+	int i;
+	for(i=0;i < GetItemCnt(); i++){
+		while(((GetIn()+1) % GetBufSize())==GetOut())
+			;
+		int rando = GetRand(0,100);
+		WriteAtBufIndex(GetIn(),rando);
+		printf("Producing Item %d with value %d at Index %d\n", i+1, rando, GetIn());
+		SetIn((GetIn()+1) % GetBufSize());
+	}
+
 	printf("Producer Completed\n");
 }
 

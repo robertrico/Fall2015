@@ -1,3 +1,4 @@
+/* Robert Rico */
 #include "libshm.h"
 
 void InitShm(int bufSize, int itemCnt)
@@ -12,12 +13,8 @@ void InitShm(int bufSize, int itemCnt)
 	 // Use PROT_READ | PROT_WRITE
 
 	int shm_fd;
-
 	shm_fd = shm_open(name, O_CREAT | O_RDWR , 0666);
-
-
 	ftruncate(shm_fd,SHM_SIZE);
-
 	gShmPtr = mmap(0,SHM_SIZE,PROT_READ | PROT_WRITE,MAP_SHARED,shm_fd,0);
 	
 	// Write code here to set the values of the four integers in the header

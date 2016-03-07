@@ -1,3 +1,5 @@
+/* Robert Rico */
+
 #include "consumer.h"
 
 int main()
@@ -5,8 +7,6 @@ int main()
 	const char *name = SHM_NAME; // Name of shared memory object to be passed to shm_open
 	int bufSize; // Bounded buffer size
 	int itemCnt; // Number of items to be consumed
-	int in; // Index of next item to produce
-	int out; // Index of next item to consume
 
 	int shm_fd; // Shared Memory File Descriptor
 
@@ -22,13 +22,13 @@ int main()
 	// Just call the functions provided below like this:
 	bufSize = GetBufSize();
 	itemCnt = GetItemCnt();
-	in = GetIn();
-	out = GetOut();
 
 	// Write code here to check that the consumer has read the right values: 
 	printf("Consumer reading: bufSize = %d\n",bufSize);
+	printf("Consumer reading: itemCnt = %d\n",itemCnt);
+	printf("Consumer reading: in = %d\n",GetIn());
+	printf("Consumer reading: out = %d\n",GetOut());
 
-	printf("Index 5 is: %d\n",ReadAtBufIndex(5));
 	// Write code here to consume all the items produced by the producer
 	// Use the functions provided below to get/set the values of shared variables in, out, bufSize
 	// Use the provided function ReadAtBufIndex() to read from the bounded buffer 	
@@ -36,6 +36,13 @@ int main()
 	// Use the following print statement to report the consumption of an item:
 	// printf("Consuming Item %d with value %d at Index %d\n", i, val, out);
 	// where i is the item number, val is the item value, out is its index in the bounded buffer
+	int i;
+	for(i=0;i < GetItemCnt(); i++){
+		while(GetIn() == GetOut())
+			;
+		printf("Consuming Item %d with value %d at Index %d\n", i+1, ReadAtBufIndex(GetOut()), GetOut());
+		SetOut((GetOut()+1) % GetBufSize());
+	}
 
 
 	// remove the shared memory segment 
