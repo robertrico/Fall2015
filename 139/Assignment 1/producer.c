@@ -7,6 +7,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <sys/types.h>
+#include <sys/wait.h>
 
 // Size of shared memory block
 // Pass this to ftruncate and mmap
@@ -82,42 +83,54 @@ int main(int argc, char* argv[])
 
 void InitShm(int bufSize, int itemCnt)
 {
-    int in = 0;
-    int out = 0;
+	int in = 0;
+	int out = 0;
 	const char *name = "OS_HW1"; // Name of shared memory object to be passed to shm_open
 
-     // Write code here to create a shared memory block and map it to gShmPtr
-	 // Use the above name.
-	 // **Extremely Important: map the shared memory block for both reading and writing 
-	 // Use PROT_READ | PROT_WRITE
-	
+	// Write code here to create a shared memory block and map it to gShmPtr
+	// Use the above name.
+	// **Extremely Important: map the shared memory block for both reading and writing 
+	// Use PROT_READ | PROT_WRITE
+	int shm_fd;
+	shm_fd = shm_open(name, O_CREAT | O_RDWR , 0666);
+	ftruncate(shm_fd,SHM_SIZE);
+	gShmPtr = mmap(0,SHM_SIZE,PROT_READ | PROT_WRITE,MAP_SHARED,shm_fd,0);
+
 	// Write code here to set the values of the four integers in the header
-    // Just call the functions provided below, like this
-    SetBufSize(bufSize); 	
-       
-	   
+	// Just call the functions provided below, like this
+	SetBufSize(bufSize); 	
+	SetItemCnt(itemCnt);
+	SetIn(in);
+	SetOut(out);
+
 }
 
 void Producer(int bufSize, int itemCnt, int randSeed)
 {
-    int in = 0;
-    int out = 0;
-        
-    srand(randSeed);
+	int in = 0;
+	int out = 0;
 
-    // Write code here to produce itemCnt integer values in the range [0-100]
-    // Use the functions provided below to get/set the values of shared variables "in" and "out"
-    // Use the provided function WriteAtBufIndex() to write into the bounded buffer 	
+	srand(randSeed);
+
+	// Write code here to produce itemCnt integer values in the range [0-100]
+	// Use the functions provided below to get/set the values of shared variables "in" and "out"
+	// Use the provided function WriteAtBufIndex() to write into the bounded buffer 	
 	// Use the provided function GetRand() to generate a random number in the specified range
-    // **Extremely Important: Remember to set the value of any shared variable you change locally
+	// **Extremely Important: Remember to set the value of any shared variable you change locally
 	// Use the following print statement to report the production of an item:
 	// printf("Producing Item %d with value %d at Index %d\n", i, val, in);
 	// where i is the item number, val is the item value, in is its index in the bounded buffer
-    	
-	
-	
-	
-    
+
+	int i;
+	for(i=0;i < GetItemCnt(); i++){
+		while(((GetIn()+1) % GetBufSize())==GetOut())
+			;
+		int rando = GetRand(0,100);
+		WriteAtBufIndex(GetIn(),rando);
+		printf("Producing Item %d with value %d at Index %d\n", i+1, rando, GetIn());
+		SetIn((GetIn()+1) % GetBufSize());
+	}
+
 	printf("Producer Completed\n");
 }
 
