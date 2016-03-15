@@ -1,0 +1,117 @@
+"Synchronization Hardware:"
+	Going to want to review this section after class. It is considered one of the most challenging.
+
+	Many systems, provide hardware support for implementing the critical section.
+
+	Critical section is the section of the code that may cause deadlocks or starvation. Usually because of a shared variable.
+
+	Locking. THis is a concept that hardware uses to prevent interruppts from happening.
+
+	However, this may be inconvinient or inefficient.
+
+	Another concept to fix this could be the use of atomic operations. For example:
+
+	"This right here will be used as an atomic function. THat means it cannot stop halfway thru."
+
+	"test_and_set" 
+
+	bool test_and_set(bool *target)
+	{
+		boolean rv = *target;
+		*target = TRUE;
+		return rv;
+	} 
+
+
+	do {
+		while(test_and_set(&lock))
+			;
+		/** Critical section code */
+
+		lock = false;
+		
+		/** Other section code */
+	} while(true);
+
+		
+
+	"compare_and_swap" //This is set at 0 no process is active
+	int compare_and_swap(int *value, int expect, int new_value)
+	{
+		int temp = *value;
+		if(*value == expect)
+			*value = new-value;
+
+		return temp;
+	}
+
+	do {
+		while(compare_and_swap(&lock,0,1) != 0)
+			;
+		/** Critical section code */
+
+		lock = false;
+		
+		/** Other section code */
+	} while(true);
+
+	"These however, do not satisfy the bounded waiting. (Progress,Mutual Exclusion,Bounded Waiting)"
+
+	Time cheduling and time quanta are the factors that do not guarantee the bounded waiting problem.
+	We cannot assume the time scheduling is fair and enforces fairness.
+
+
+	/* Revie the bounded Wiating mutual exclusion with test and set slide. THis is in the book and the slides */
+
+	It is in regards in turn based waiting. Waiting[h]
+
+			waiting[i] = true, // i is waiting.
+			there is a lock in place at this point.
+
+	After the process has gained access to its critical section it sets the waiting to false.
+
+	Now it has to search all processes and check if it is waiting for the process. If a process is waiting it is set as false, and since it will be stuck in the while loop,
+	it can now pass the while loop and access its crititcal section.
+
+	
+############################
+#### Mutex Locks ###########
+############################
+
+Hardware solutions use is complex and hard to use directly. A simpler usage is required. OS's use Mutex locks and semaphores.
+
+the main functions are acquire() and release()
+
+We will be implementing this using pthreads.
+
+pthread_lock and pthread_unlock
+
+When working with these latter functions.
+
+pthread_lock 
+	access shared var / critical section
+pthread_unlock
+
+
+This style is called a spinlock. While it is waiting...it is "spinning" and just waiting.
+A waiting process blocks (waiting state)
+
+
+############################
+##### Semaphore ############
+############################
+
+semaphore s=3
+Number of available instances of a resource.
+
+Wait        -> if the number of instances <= 0
+
+signal/post -> make one more instance available s++
+
+
+
+
+
+
+
+
