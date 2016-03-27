@@ -65,7 +65,7 @@ int main()
 	for(i=0;i < GetItemCnt(); i++){
 		while(GetIn() == GetOut())
 			;
-		printf("Consuming Item %d with value %d at Index %d\n", i+1, ReadAtBufIndex(GetOut()), GetOut());
+		printf("Consuming Item %d with value %d at Index %d\n", i+1, ReadAtBufIndex(GetOut()), GetOut()); //i+1 to show human readable count
 		SetOut((GetOut()+1) % GetBufSize());
 	}
 

@@ -7,7 +7,7 @@
 #include <sys/mman.h>
 #include <unistd.h>
 #include <sys/types.h>
-#include <sys/wait.h>
+#include <sys/wait.h> //Implicit Definition fix
 
 // Size of shared memory block
 // Pass this to ftruncate and mmap
@@ -127,7 +127,7 @@ void Producer(int bufSize, int itemCnt, int randSeed)
 			;
 		int rando = GetRand(0,100);
 		WriteAtBufIndex(GetIn(),rando);
-		printf("Producing Item %d with value %d at Index %d\n", i+1, rando, GetIn());
+		printf("Producing Item %d with value %d at Index %d\n", i+1, rando, GetIn()); //i+1 to show human readable count
 		SetIn((GetIn()+1) % GetBufSize());
 	}
 
