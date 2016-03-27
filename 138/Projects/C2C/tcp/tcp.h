@@ -13,5 +13,5 @@
 #define ERR(msg){perror(msg);exit(1);}
 
 //Define a server port to access from client, and init on server
-#define SERVER_PORT 66666
+#define SERVER_PORT 3000
 #define SERVER "localhost"

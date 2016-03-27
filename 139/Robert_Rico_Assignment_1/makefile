@@ -7,7 +7,6 @@ LFLAGS= -lshm -Llib -lrt
 LIBSRC=lib/src/
 LIBBLD=lib/build/
 
-
 all: shmlib producer consumer
 
 shmlib:
