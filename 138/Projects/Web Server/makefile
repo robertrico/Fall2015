@@ -8,11 +8,11 @@ WBO=build/webserv.o
 all: webserv
 
 webserv: $(WBO)
-	$(CC) $(CFLAGS) $(WBO) -o $(BIN)$(EXEC)
+	$(CC) $(CFLAGS) -lm $(WBO) -o $(BIN)$(EXEC)
 
 build/webserv.o: src/webserv.c
 	$(CC) $(CFLAGS) -c src/webserv.c -o $(WBO)
 
 clean:
-	rm bin/*
 	rm build/*
+	rm bin/*
