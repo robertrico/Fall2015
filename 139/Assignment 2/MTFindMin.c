@@ -3,6 +3,7 @@
 #include <pthread.h>
 #include <sys/timeb.h>
 #include <semaphore.h>
+#include <stdbool.h>
 
 #define MAX_SIZE 100000000
 #define MAX_THREADS 16
@@ -80,7 +81,7 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
 	for(i = 0; i < gThreadCount; i++){
-		if(pthread_create(&tid[i], NULL, ThFindMin, &i)) {
+		if(pthread_create(&tid[i], attr, ThFindMin, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
 			//return 1;
 
@@ -104,7 +105,27 @@ int main(int argc, char *argv[]){
 	// Initialize threads, create threads, and then make the parent continually check on all child threads
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
+	for(i = 0; i < gThreadCount; i++){
+		if(pthread_create(&tid[i], attr, ThFindMin, &indexes[i])) {
+			fprintf(stderr, "Error creating thread\n");
+			//return 1;
 
+		}
+	}
+
+	int j;
+	for(j = 0; j < gThreadCount; j++){
+		gThreadDone[j] = false;
+	}
+	while(1){
+		bool thrdsComplete = true;
+		for(j = 0; j < gThreadCount; j++){
+			thrdsComplete = thrdsComplete && gThreadDone[j];
+		}
+		if(thrdsComplete){
+			break;
+		}
+	}
 	
 	
     min = SearchThreadMin();
@@ -118,6 +139,16 @@ int main(int argc, char *argv[]){
 	// Initialize threads, create threads, and then make the parent wait on the "completed" semaphore 
 	// The thread start function is ThFindMinWithSemaphore
 	// Don't forget to properly initialize shared variables and semaphores using sem_init 
+	sem_init(&completed,0,1);
+	sem_init(&mutex,0,1);
+	for(i = 0; i < gThreadCount; i++){
+		if(pthread_create(&tid[i], attr, ThFindMinWithSemaphore, &indexes[i])) {
+			fprintf(stderr, "Error creating thread\n");
+			//return 1;
+
+		}
+	}
+	sem_wait(&completed);
 
 
 	
@@ -125,9 +156,18 @@ int main(int argc, char *argv[]){
 	printf("Threaded FindMin with parent waiting on a semaphore completed in %ld ms. Min = %d\n", GetTime(), min);
 }
 
+int SeqFind(int start, int end){
+	int i, smallest=MAX_RANDOM_NUMBER+1;
+	for(i=start; i < end; i++){
+		if(gData[i] < smallest){
+			smallest = gData[i];
+		}	
+	}
+	return smallest;
+}
 // Write a regular sequential function to search for the minimum value in the array gData
 int SqFindMin(int size) {
-
+	return SeqFind(0,size);
 }
 
 // Write a thread function that searches for the minimum value in one division of the array
@@ -136,9 +176,9 @@ void* ThFindMin(void *param) {
 	int threadNum = ((int*)param)[0];
 	int startIndex = ((int*)param)[1];
 	int endIndex = ((int*)param)[2];
-	printf("In thread method\n");
-	printf("%d\n",threadNum);
-
+	gThreadMin[threadNum] = SeqFind(startIndex,endIndex);
+	gThreadDone[threadNum] = true;
+	return NULL;
 }
 
 // Write a thread function that searches for the minimum value in one division of the array
@@ -148,7 +188,20 @@ void* ThFindMin(void *param) {
 // post the "completed" semaphore if it is the last thread to be done
 // Don't forget to protect access to gDoneThreadCount with the "mutex" semaphore     
 void* ThFindMinWithSemaphore(void *param) {
-
+	int threadNum = ((int*)param)[0];
+	int startIndex = ((int*)param)[1];
+	int endIndex = ((int*)param)[2];
+	gThreadMin[threadNum] = SeqFind(startIndex,endIndex);
+	if(gThreadMin[threadNum] == 0){
+		sem_post(&completed);
+	}
+	sem_wait(&mutex);
+	gDoneThreadCount++;
+	sem_post(&mutex);
+	if(gDoneThreadCount == gThreadCount){
+		sem_post(&completed);
+	}
+	return NULL;
 }
 
 int SearchThreadMin() {
@@ -166,13 +219,31 @@ int SearchThreadMin() {
 // Write a function that fills the gData array with random numbers between 1 and MAX_RANDOM_NUMBER
 // If indexForZero is valid and non-negative, set the value at that index to zero 
 void GenerateInput(int size, int indexForZero) {
-
+	printf("Filling Array...\n");
+	int i;
+	SetTime();
+	for(i=0; i < size; i++){
+		if(indexForZero > 0 && indexForZero == i){
+			gData[i] = 0;
+		}else{
+			gData[i] = GetRand(1,MAX_RANDOM_NUMBER);
+		}	
+	}
+	printf("%d\r",i);
+	printf("Array Fill took %lu ms \n",GetTime());
 }
 
 // Write a function that calculates the right indexes to divide the array into thrdCnt equal divisions
 // For each division i, indexes[i][0] should be set to the division number i
 // indexes[i][1] should be set to the start index, and indexes[i][2] should be set to the end index 
 void CalculateIndexes(int arraySize, int thrdCnt, int indexes[MAX_THREADS][3]) {
+	int i,start=0,indCount = (arraySize / thrdCnt);
+	for(i=0; i < thrdCnt; i++){
+		indexes[i][0] = i;
+		indexes[i][1] = start;
+		indexes[i][2] = start+indCount-1;
+		start = indexes[i][2] + 1;
+	}
 
 }
 
