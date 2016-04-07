@@ -38,7 +38,7 @@ int main(int argc, char *argv[])
 		memset((char *)&buffer, 0, BUFF_SIZE);
 		n = read(newsockfd,buffer,255);
 
-		buildHead((char*)&buffer);
+		parseRequest((char*)&buffer);
 
 		char *response = NULL;
 		memset(&response, 0, sizeof(request_header.request)); /* Reset Memory */
@@ -62,7 +62,12 @@ int main(int argc, char *argv[])
 	return 0; 
 }
 
-void buildHead(char *buffer){
+/**
+ * Parse the incoming TCP request.
+ *	Special case first line, strtok by space.
+ *	Strtok by : after first line.
+ */
+void parseRequest(char *buffer){
 	char *end_str;
 	char *token = strtok_r(buffer,"\r\n",&end_str);
 	int method_set = 0;
@@ -112,6 +117,9 @@ void buildHead(char *buffer){
 	}
 }
 
+/**
+ * Build proper TCP Formatted date.
+ */
 void buildResponseDate(){
 	char time_buf[1000];
 	time_t now = time(0);
@@ -121,6 +129,10 @@ void buildResponseDate(){
 	response_header.date = time_buf;
 }
 
+/**
+ * Get the requested file contents, and also get 
+ * the content length of the data file.
+ */
 int getFileContents(char *filename){
 	unsigned long length;
 	FILE *fp = fopen(filename,"rb");
@@ -147,6 +159,9 @@ int getFileContents(char *filename){
 	return 0;
 }
 
+/**
+ * Build Full Response including headers to send to requester
+ */
 void buildFullResponse(){
 	char final_form[responseLen()+100];
 	final_form[0] = '\0';
@@ -163,6 +178,9 @@ void buildFullResponse(){
 	strcpy(response_header.full_response,final_form);
 }
 
+/**
+ * Get Full Response length to attach to header
+ */
 int responseLen(){
 	int ok = strlen(two_hundred_ok);
 	int date = strlen(response_header.date);

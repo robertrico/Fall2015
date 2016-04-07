@@ -17,6 +17,7 @@
 #define SERVER_PORT 3000
 #define SERVER "localhost"
 
+/* Request Struct */
 struct http_request{
 	char *request_method;
 	char *http_version;
@@ -27,6 +28,7 @@ struct http_request{
 	char *date;
 };
 
+/* Response Struct */
 struct http_response{
 	int *status_code;
 	char *status;
@@ -37,6 +39,7 @@ struct http_response{
 	char *full_response;
 };
 
+/* Static 404 message*/
 static char* not_found_response_template = 
 	"HTTP/1.0 404 Not Found\r\n"
 	"Content-Type: text/html\r\n"
@@ -45,13 +48,15 @@ static char* not_found_response_template =
 	"<html><head><style>h1,h3,p{text-align:center;}</style></head><body><h1>404</h1><h3>File Not found.</h3><p>The file you requested does not exist on the server.</p></body></html>"
 	"\r\n"
 	"\r\n";
+
+/* Static 200 start of response message*/
 static char *two_hundred_ok = 
 	"HTTP/1.1 200 OK"
 	"\r\n"
 	"Server: webserv/1.0"
 	"\r\n";
 
-void buildHead(char *buffer);
+void parseRequest(char *buffer);
 void buildResponseDate();
 void buildFullResponse();
 int getFileContents();
