@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 		}
 
 		response_header.full_response = NULL;
-		printf("Response : %s\n",response);
+		printf("Response : \n%s\n",response);
 
 		n = write(newsockfd,response,strlen(response));
 		close(newsockfd);
@@ -72,6 +72,7 @@ void parseRequest(char *buffer){
 	char *token = strtok_r(buffer,"\r\n",&end_str);
 	int method_set = 0;
 	int first_line = 1;
+	printf("Parsing request:\n\n%s\n\n",buffer);
 
 	while(token != NULL){
 		/* While there are tokens in "string" */
