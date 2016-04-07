@@ -40,9 +40,9 @@ struct http_response{
 static char* not_found_response_template = 
 	"HTTP/1.0 404 Not Found\r\n"
 	"Content-Type: text/html\r\n"
-	"Content-Length: 67\r\n"
+	"Content-Length: 176\r\n"
 	"\r\n"
-	"<html><head></head><body><h3>404 File Not found.</h3></body></html>"
+	"<html><head><style>h1,h3,p{text-align:center;}</style></head><body><h1>404</h1><h3>File Not found.</h3><p>The file you requested does not exist on the server.</p></body></html>"
 	"\r\n"
 	"\r\n";
 static char *two_hundred_ok = 
