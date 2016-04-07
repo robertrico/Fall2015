@@ -29,6 +29,7 @@ void *ThFindMinWithSemaphore(void *param); //Thread FindMin with semaphores
 int SearchThreadMin(); // Search all thread minima to find the minimum value found in all threads 
 void GenerateInput(int size, int indexForZero); //Generate the input array 
 void CalculateIndexes(int arraySize, int thrdCnt, int indexes[MAX_THREADS][3]); //Calculate the indexes to divide the array into T divisions, one division per thread
+void resetAll();
 int GetRand(int min, int max);//Get a random number between min and max
 
 //Timing functions
@@ -81,9 +82,9 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
 	for(i = 0; i < gThreadCount; i++){
-		if(pthread_create(&tid[i], attr, ThFindMin, &indexes[i])) {
+		if(pthread_create(&tid[i], &attr[i], ThFindMin, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
-			//return 1;
+			return 1;
 
 		}
 	}
@@ -91,7 +92,7 @@ int main(int argc, char *argv[]){
 	for(i = 0; i < gThreadCount; i++){
 		if(pthread_join(tid[i], NULL)) {
 			fprintf(stderr, "Error joining thread\n");
-			//return 2;
+			return 1;
 		}
 	}
 
@@ -106,9 +107,9 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
 	for(i = 0; i < gThreadCount; i++){
-		if(pthread_create(&tid[i], attr, ThFindMin, &indexes[i])) {
+		if(pthread_create(&tid[i], &attr[i], ThFindMin, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
-			//return 1;
+			return 1;
 
 		}
 	}
@@ -142,7 +143,7 @@ int main(int argc, char *argv[]){
 	sem_init(&completed,0,1);
 	sem_init(&mutex,0,1);
 	for(i = 0; i < gThreadCount; i++){
-		if(pthread_create(&tid[i], attr, ThFindMinWithSemaphore, &indexes[i])) {
+		if(pthread_create(&tid[i], &attr[i], ThFindMinWithSemaphore, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
 			//return 1;
 
@@ -158,7 +159,7 @@ int main(int argc, char *argv[]){
 
 int SeqFind(int start, int end){
 	int i, smallest=MAX_RANDOM_NUMBER+1;
-	for(i=start; i < end; i++){
+	for(i=start; i <= end; i++){
 		if(gData[i] < smallest){
 			smallest = gData[i];
 		}	
@@ -167,7 +168,7 @@ int SeqFind(int start, int end){
 }
 // Write a regular sequential function to search for the minimum value in the array gData
 int SqFindMin(int size) {
-	return SeqFind(0,size);
+	return SeqFind(0,size-1);
 }
 
 // Write a thread function that searches for the minimum value in one division of the array
@@ -277,5 +278,7 @@ void SetTime(void){
 long GetTime(void){
 	long crntTime = GetCurrentTime();
 	return (crntTime - gRefTime);
+}
+void resetAll(){
 }
 
