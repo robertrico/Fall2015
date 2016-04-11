@@ -1,0 +1,72 @@
+Filling Array...
+100000000Array Fill took 5195 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 145 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 184 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 0
+Filling Array...
+100000000Array Fill took 6637 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 140 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 197 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 0
+Filling Array...
+100000000Array Fill took 5198 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 149 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 144 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 0 ms. Min = 0
+Filling Array...
+100000000Array Fill took 5201 ms 
+Sequential search completed in 236 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 138 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 184 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 0 ms. Min = 1
+Filling Array...
+100000000Array Fill took 5199 ms 
+Sequential search completed in 235 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 134 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 159 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 1
+Filling Array...
+100000000Array Fill took 5197 ms 
+Sequential search completed in 236 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 133 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 165 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 1
+Filling Array...
+100000000Array Fill took 5186 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 133 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 185 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 0 ms. Min = 0
+Filling Array...
+100000000Array Fill took 5186 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 127 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 201 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 0 ms. Min = 0
+Filling Array...
+100000000Array Fill took 5199 ms 
+Sequential search completed in 236 ms. Min = 0
+Threaded FindMin with parent waiting for all children completed in 128 ms. Min = 0
+Threaded FindMin with parent continually checking on children completed in 140 ms. Min = 0
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 0
+Filling Array...
+100000000Array Fill took 5192 ms 
+Sequential search completed in 235 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 148 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 198 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 1
+Filling Array...
+100000000Array Fill took 5188 ms 
+Sequential search completed in 235 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 153 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 161 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 0 ms. Min = 1
+Filling Array...
+100000000Array Fill took 5186 ms 
+Sequential search completed in 234 ms. Min = 1
+Threaded FindMin with parent waiting for all children completed in 136 ms. Min = 1
+Threaded FindMin with parent continually checking on children completed in 167 ms. Min = 1
+Threaded FindMin with parent waiting on a semaphore completed in 1 ms. Min = 1

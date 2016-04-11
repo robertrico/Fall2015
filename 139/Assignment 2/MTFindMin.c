@@ -82,6 +82,7 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
 	for(i = 0; i < gThreadCount; i++){
+		pthread_attr_init(&attr[i]);
 		if(pthread_create(&tid[i], &attr[i], ThFindMin, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
 			return 1;
@@ -107,6 +108,7 @@ int main(int argc, char *argv[]){
 	// The thread start function is ThFindMin
 	// Don't forget to properly initialize shared variables 
 	for(i = 0; i < gThreadCount; i++){
+		pthread_attr_init(&attr[i]);
 		if(pthread_create(&tid[i], &attr[i], ThFindMin, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
 			return 1;
@@ -143,6 +145,7 @@ int main(int argc, char *argv[]){
 	sem_init(&completed,0,1);
 	sem_init(&mutex,0,1);
 	for(i = 0; i < gThreadCount; i++){
+		pthread_attr_init(&attr[i]);
 		if(pthread_create(&tid[i], &attr[i], ThFindMinWithSemaphore, &indexes[i])) {
 			fprintf(stderr, "Error creating thread\n");
 			//return 1;
@@ -151,8 +154,6 @@ int main(int argc, char *argv[]){
 	}
 	sem_wait(&completed);
 
-
-	
 	min = SearchThreadMin();
 	printf("Threaded FindMin with parent waiting on a semaphore completed in %ld ms. Min = %d\n", GetTime(), min);
 }
