@@ -144,6 +144,8 @@ int main(int argc, char *argv[]){
 	// Don't forget to properly initialize shared variables and semaphores using sem_init 
 	sem_init(&completed,0,1);
 	sem_init(&mutex,0,1);
+
+	sem_wait(&completed);
 	for(i = 0; i < gThreadCount; i++){
 		pthread_attr_init(&attr[i]);
 		if(pthread_create(&tid[i], &attr[i], ThFindMinWithSemaphore, &indexes[i])) {
